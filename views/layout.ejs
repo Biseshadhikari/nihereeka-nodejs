@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Media App</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans flex flex-col h-[100vh]">
+
+  <!-- Navbar -->
+  <header class="bg-indigo-600 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+        <a href="/" class="text-xl font-bold">MyApp</a>
+        <nav class="space-x-4">
+          <a href="/" class="hover:text-indigo-300">Home</a>
+ 
+          <!-- Conditionally Render Login/Register or Logout -->
+         
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="my-6">
+    <div class="max-w-7xl mx-auto px-4">
+      <%- body %> <!-- Dynamic content goes here -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-4 mt-auto">
+    <div class="text-center">
+      <p>&copy; 2024 MyApp. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
