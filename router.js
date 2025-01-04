@@ -135,4 +135,59 @@ router.post('/posts', authenticateUser, async (req, res) => {
   }
 });
 
+router.get('/posts/:id/edit', authenticateUser, async (req, res) => {
+  const postId = req.params.id;
+  const userId = req.user.id;
+
+  try {
+    const post = await Post.findById(postId);
+    if (!post || post.users.toString() !== userId) {
+      return res.status(403).send('Not authorized');
+    }
+
+    res.render('edit-post', { post });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error fetching post details');
+  }
+});
+router.post('/posts/:id/update', authenticateUser, async (req, res) => {
+  const postId = req.params.id;
+  const { title, content } = req.body;
+  const userId = req.user.id;
+
+  try {
+    const post = await Post.findById(postId);
+    if (!post || post.users.toString() !== userId) {
+      return res.status(403).send('Not authorized');
+    }
+
+    post.title = title;
+    post.content = content;
+    await post.save();
+    res.redirect('/');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error updating post');
+  }
+});
+
+// Delete a post
+router.post('/posts/:id/delete', authenticateUser, async (req, res) => {
+  const postId = req.params.id;
+  const userId = req.user.id;
+
+  try {
+    const post = await Post.findById(postId);
+    if (!post || post.users.toString() !== userId) {
+      return res.status(403).send('Not authorized');
+    }
+
+    await post.deleteOne();
+    res.redirect('/');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error deleting post');
+  }
+});
   module.exports = router

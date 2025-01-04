@@ -1,0 +1,29 @@
+<div class="max-w-4xl mx-auto p-8 bg-white rounded-lg shadow-md">
+    <h1 class="text-3xl font-semibold text-center text-indigo-600 mb-8">Edit Post</h1>
+    
+    <form action="/posts/<%= post._id %>/update" method="POST" class="space-y-6">
+      <!-- Post Title -->
+      <div>
+        <label for="title" class="block text-lg font-medium text-gray-700">Post Title</label>
+        <input type="text" name="title" value="<%= post.title %>" id="title" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+      </div>
+  
+      <!-- Post Content -->
+      <div>
+        <label for="content" class="block text-lg font-medium text-gray-700">Post Content</label>
+        <textarea name="content" id="content" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required><%= post.content %></textarea>
+      </div>
+  
+      <!-- Submit Button -->
+      <div>
+        <button type="submit" class="w-full py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          Update Post
+        </button>
+      </div>
+    </form>
+    
+    <!-- Cancel Link -->
+    <div class="text-center mt-4">
+      <a href="/" class="text-indigo-600 hover:text-indigo-800">Cancel</a>
+    </div>
+  </div>
